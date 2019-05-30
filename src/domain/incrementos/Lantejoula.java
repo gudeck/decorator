@@ -6,7 +6,7 @@
 package domain.incrementos;
 
 import domain.Incrementos;
-import domain.Vestido;
+import domain.Roupa;
 
 /**
  *
@@ -14,7 +14,7 @@ import domain.Vestido;
  */
 public class Lantejoula extends Incrementos {
 
-    public Lantejoula(Vestido vestido) {
+    public Lantejoula(Roupa vestido) {
         super(vestido);
     }
 

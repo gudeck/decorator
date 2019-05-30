@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package domain.incrementos;
+
+import domain.Incrementos;
+import domain.Roupa;
 
 /**
  *
  * @author guzuc
  */
-public abstract class Vestido {
+public class Renda extends Incrementos {
 
-    String atributo1;
-    Double atributo3;
-    int atributo2;
-    char atributo4;
+    public Renda(Roupa vestido) {
+        super(vestido);
+    }
 
 }

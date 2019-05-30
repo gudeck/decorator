@@ -9,11 +9,11 @@ package domain;
  *
  * @author guzuc
  */
-public abstract class Incrementos extends Vestido {
+public abstract class Incrementos extends Roupa {
 
-    Vestido vestido;
+    Roupa vestido;
     
-    public Incrementos(Vestido vestido){
+    public Incrementos(Roupa vestido){
         this.vestido = vestido;
     }
     

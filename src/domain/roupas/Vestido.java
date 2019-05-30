@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain.incrementos;
+package domain.roupas;
 
-import domain.Incrementos;
-import domain.Vestido;
+import domain.Roupa;
 
 /**
  *
  * @author guzuc
  */
-public class Classe5 extends Incrementos {
+public class Vestido extends Roupa {
 
-    public Classe5(Vestido vestido) {
-        super(vestido);
+    public Vestido() {
+        this.nomeProduto = "Vestido";
+        this.valorAluguel = 122.65;
     }
 
 }

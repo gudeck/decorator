@@ -6,15 +6,15 @@
 package domain.incrementos;
 
 import domain.Incrementos;
-import domain.Vestido;
+import domain.Roupa;
 
 /**
  *
  * @author guzuc
  */
-public class Classe2 extends Incrementos {
+public class Estampa extends Incrementos {
 
-    public Classe2(Vestido vestido) {
+    public Estampa(Roupa vestido) {
         super(vestido);
     }
 

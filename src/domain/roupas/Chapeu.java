@@ -3,14 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain.tecidos;
+package domain.roupas;
 
-import domain.Vestido;
+import domain.Roupa;
 
 /**
  *
  * @author guzuc
  */
-public class Tactel extends Vestido {
+public class Chapeu extends Roupa {
+
+    public Chapeu() {
+        this.nomeProduto = "Chapéu";
+        this.valorAluguel = 35.60;
+    }
 
 }
