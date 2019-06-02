@@ -7,15 +7,23 @@ package domain.incrementos;
 
 import domain.Incrementos;
 import domain.Roupa;
+import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author guzuc
  */
-public class Strass extends Incrementos {
+@Entity
+public class Strass extends Incrementos implements Serializable {
+
+    public Strass() {
+    }
 
     public Strass(Roupa vestido) {
         super(vestido);
+        nomeProduto = "Strass";
+        valorAluguel = 0.4;
     }
 
 }

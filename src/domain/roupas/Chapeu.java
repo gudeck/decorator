@@ -6,12 +6,15 @@
 package domain.roupas;
 
 import domain.Roupa;
+import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author guzuc
  */
-public class Chapeu extends Roupa {
+@Entity
+public class Chapeu extends Roupa implements Serializable{
 
     public Chapeu() {
         this.nomeProduto = "Chapéu";

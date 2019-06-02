@@ -38,5 +38,5 @@ public class MetodosUteis {
         SimpleDateFormat formatPattern = new SimpleDateFormat("dd/MM/yyyy");
         return formatPattern.format(data);
     }
-    
+
 }

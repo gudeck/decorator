@@ -5,15 +5,30 @@
  */
 package domain;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 /**
  *
  * @author guzuc
  */
-public abstract class Roupa {
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class Roupa implements Serializable {
 
-    Integer codRoupa;
+    public Roupa() {
+    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Integer codRoupa;
     protected Double valorAluguel;
-    protected String nomeProduto; 
+    protected String nomeProduto;
 
     public Double getValorAluguel() {
         return valorAluguel;
@@ -23,6 +38,12 @@ public abstract class Roupa {
         return nomeProduto;
     }
 
-    
-    
+    public Roupa getRoupa() {
+        return this;
+    }
+
+    public void setRoupa(Roupa roupa) {
+
+    }
+
 }

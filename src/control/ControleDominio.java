@@ -6,6 +6,7 @@
 package control;
 
 import dao.*;
+import domain.Roupa;
 
 /**
  *
@@ -23,6 +24,10 @@ public class ControleDominio {
 
     public static ControleDominio getInstance() {
         return uniqueInstance;
+    }
+
+    public void createRoupa(Roupa roupa) {
+
     }
 
 }

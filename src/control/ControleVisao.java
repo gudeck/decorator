@@ -40,7 +40,9 @@ public class ControleVisao {
 
         //</editor-fold>
         ControleVisao visaoCtrl = new ControleVisao();
-        visaoCtrl.janelaPrincipal();
+        visaoCtrl.criacaoRoupas();
+
+        System.exit(0);
 
     }
 
@@ -61,6 +63,13 @@ public class ControleVisao {
         janelaPrincipal.setResizable(false);
         janelaPrincipal.setSize(565, 327);
         janelaPrincipal.setVisible(true);
+    }
+
+    private void criacaoRoupas() {
+        JDGCriacaoRoupas criacaoRoupas = JDGCriacaoRoupas.getInstance(janelaPrincipal, true, this);
+        criacaoRoupas.setLocationRelativeTo(null);
+        criacaoRoupas.setResizable(false);
+        criacaoRoupas.setVisible(true);
     }
 
 }

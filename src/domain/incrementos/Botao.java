@@ -7,15 +7,23 @@ package domain.incrementos;
 
 import domain.Incrementos;
 import domain.Roupa;
+import java.io.Serializable;
+import javax.persistence.Entity;
 
 /**
  *
  * @author guzuc
  */
-public class Botao extends Incrementos {
+@Entity
+public class Botao extends Incrementos implements Serializable {
+
+    public Botao() {
+    }
 
     public Botao(Roupa vestido) {
         super(vestido);
+        nomeProduto = "Botão";
+        valorAluguel = 0.75;
     }
 
 }
