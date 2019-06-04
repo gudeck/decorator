@@ -7,6 +7,7 @@ package control;
 
 import dao.*;
 import domain.Roupa;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,6 +28,17 @@ public class ControleDominio {
     }
 
     public void createRoupa(Roupa roupa) {
+        
+        ArrayList<Roupa> listaRoupas = new ArrayList<>();
+        Roupa aux = roupa;
+        while(aux != null){
+            listaRoupas.add(aux);
+            aux = roupa.getRoupa();
+        }
+        
+        for(int i = listaRoupas.size(); i >= 0; i--){
+            genericDao.create(listaRoupas.get(i));
+        }
 
     }
 

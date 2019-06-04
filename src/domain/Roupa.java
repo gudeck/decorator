@@ -39,7 +39,7 @@ public abstract class Roupa implements Serializable {
     }
 
     public Roupa getRoupa() {
-        return this;
+        return null;
     }
 
     public void setRoupa(Roupa roupa) {
