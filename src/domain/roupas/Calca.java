@@ -14,7 +14,7 @@ import javax.persistence.Entity;
  * @author guzuc
  */
 @Entity
-public class Calca extends Roupa implements Serializable{
+public class Calca extends Roupa implements Serializable {
 
     public Calca() {
         this.nomeProduto = "Calça";

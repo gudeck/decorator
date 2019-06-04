@@ -29,16 +29,42 @@ public class JFRPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        mnuiCriarRoupa = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Anarriê");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
         getContentPane().setLayout(null);
+
+        jMenu1.setText("Criar");
+
+        mnuiCriarRoupa.setText("Roupa");
+        mnuiCriarRoupa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuiCriarRoupaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuiCriarRoupa);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         getAccessibleContext().setAccessibleName("Anarrie");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void mnuiCriarRoupaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuiCriarRoupaActionPerformed
+        controladorVisao.criacaoRoupas();
+    }//GEN-LAST:event_mnuiCriarRoupaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem mnuiCriarRoupa;
     // End of variables declaration//GEN-END:variables
 }

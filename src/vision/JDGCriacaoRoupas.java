@@ -9,6 +9,7 @@ import control.*;
 import domain.Roupa;
 import domain.incrementos.*;
 import domain.roupas.*;
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -23,12 +24,18 @@ public class JDGCriacaoRoupas extends javax.swing.JDialog {
     private final ControleVisao controladorVisao;
 
     private Roupa roupa;
-    private Object[] roupas = new Object[]{new Calca(), new Camisa(), new Chapeu(), new Vestido()};
+    private Object[] roupas;
+    ArrayList<Roupa> listaRoupas = new ArrayList<>();
 
     private JDGCriacaoRoupas(java.awt.Frame parent, boolean modal, ControleVisao controlador) {
         super(parent, modal);
         initComponents();
         controladorVisao = controlador;
+        roupas = new Object[]{
+            new Calca(),
+            new Camisa(),
+            new Chapeu(),
+            new Vestido()};
         cmbRoupas.setModel(new javax.swing.DefaultComboBoxModel<>(
                 new String[]{
                     "Calça",
@@ -70,6 +77,8 @@ public class JDGCriacaoRoupas extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtProdutoCriado = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
+        lblPreco = new javax.swing.JLabel();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
@@ -267,19 +276,30 @@ public class JDGCriacaoRoupas extends javax.swing.JDialog {
         txtProdutoCriado.setRows(5);
         jScrollPane1.setViewportView(txtProdutoCriado);
 
+        jLabel6.setText("Preço:");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPreco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPreco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -362,7 +382,7 @@ public class JDGCriacaoRoupas extends javax.swing.JDialog {
                 }
             }
             ativarBotoes();
-            txtProdutoCriado.setText(mostrarProduto());
+            mostrarProduto();
         } else {
             JOptionPane.showMessageDialog(this, "Selecione uma peça base.");
         }
@@ -373,30 +393,60 @@ public class JDGCriacaoRoupas extends javax.swing.JDialog {
 
         roupa = roupa.getRoupa();
         ativarBotoes();
-        txtProdutoCriado.setText(mostrarProduto());
+        mostrarProduto();
 
     }//GEN-LAST:event_btnMenosBotaoActionPerformed
 
     private void cmbRoupasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRoupasActionPerformed
 
+        listaRoupas.clear();
+
+        Roupa aux = roupa;
+        do {
+            listaRoupas.add(aux);
+            if (aux != null) {
+                aux = aux.getRoupa();
+            }
+        } while (aux != null);
+
         roupa = (Roupa) roupas[cmbRoupas.getSelectedIndex()];
-        txtProdutoCriado.setText(mostrarProduto());
+
+        if (listaRoupas.size() >= 2) {
+
+            listaRoupas.get(listaRoupas.size() - 2).setRoupa(roupa);
+            roupa = listaRoupas.get(0);
+
+        }
+
+        ativarBotoes();
+        mostrarProduto();
 
     }//GEN-LAST:event_cmbRoupasActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
         controladorVisao.getControleDominio().createRoupa(roupa);
+        JOptionPane.showMessageDialog(this, "Produto inserido com sucesso.");
+        roupa = null;
+        ativarBotoes();
+        lblPreco.setText("");
+        txtProdutoCriado.setText("");
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+        roupa = null;
+        ativarBotoes();
+        lblPreco.setText("");
+        txtProdutoCriado.setText("");
         this.dispose();
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private String mostrarProduto() {
-
-        return roupa.getNomeProduto();
+    private void mostrarProduto() {
+        txtProdutoCriado.setText(roupa.getNomeProduto());
+        lblPreco.setText(roupa.getValorAluguel().toString());
     }
 
     private void ativarBotoes() {
@@ -406,7 +456,7 @@ public class JDGCriacaoRoupas extends javax.swing.JDialog {
         btnMenosLantejoula.setEnabled(roupa instanceof Lantejoula);
         btnMenosRenda.setEnabled(roupa instanceof Renda);
         btnMenosStrass.setEnabled(roupa instanceof Strass);
-        
+
     }
 
 
@@ -429,10 +479,12 @@ public class JDGCriacaoRoupas extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblPreco;
     private javax.swing.JTextArea txtProdutoCriado;
     // End of variables declaration//GEN-END:variables
 }

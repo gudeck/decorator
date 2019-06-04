@@ -28,15 +28,15 @@ public class ControleDominio {
     }
 
     public void createRoupa(Roupa roupa) {
-        
+
         ArrayList<Roupa> listaRoupas = new ArrayList<>();
         Roupa aux = roupa;
-        while(aux != null){
+        do {
             listaRoupas.add(aux);
-            aux = roupa.getRoupa();
-        }
+            aux = aux.getRoupa();
+        } while (aux != null);
         
-        for(int i = listaRoupas.size(); i >= 0; i--){
+        for (int i = listaRoupas.size() - 1; i >= 0; i--) {
             genericDao.create(listaRoupas.get(i));
         }
 

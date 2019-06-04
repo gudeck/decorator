@@ -5,6 +5,7 @@
  */
 package domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -18,7 +19,7 @@ public abstract class Incrementos extends Roupa {
     public Incrementos() {
     }
 
-    @ManyToOne(targetEntity = Roupa.class)
+    @ManyToOne(targetEntity = Roupa.class, cascade = CascadeType.ALL)
     protected Roupa roupa;
 
     public Incrementos(Roupa vestido) {
